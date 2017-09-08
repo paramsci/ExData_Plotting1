@@ -30,13 +30,9 @@ taball <- read.table("household_power_consumption.txt", header = TRUE, colClasse
 taball[,1] <- as.Date(taball[,1], format = "%d/%m/%Y" )
 
 temp3 <- subset(taball, tempdates %in% c(as.Date("2007-02-01"),as.Date("2007-02-02")))
-
-png(filename = "plot2.png")
-plot(temp3$Global_active_power, type = "l",
-     xlab = "",
-     ylab = "Global Active Power(Kilowatts)",
-     xaxt = "n")
-wd <- weekdays(temp3$Date)
-axis(1,at = c(order(temp4)[!duplicated(sort(temp4))],length(temp4)), labels = c(unique(wd),"Saturday"))
-# axis.Date(side = 1, x= wday(temp3$Date))
+png(filename = "plot1.png")
+hist(temp3$Global_active_power,
+     col = "red",
+     main = "Global Active Power", xlab = "Global Active Power(kilowatts)" )
 dev.off()
+
